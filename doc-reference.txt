@@ -1,0 +1,17 @@
+// ------ Docker file -------
+FROM node:20.10.0
+EXPOSE 5050
+WORKDIR /home/node/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+ENTRYPOINT ["npm","run","serve"]
+
+Проект должен лежать в корневой папке на диске C
+
+// -------------------------------------------------
+
+docker build -t aleksey/bershov .   - создание образа
+
+docker run -p 8080:80 frontend/bershov  - запуск образа
